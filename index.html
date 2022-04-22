@@ -1,17 +1,34 @@
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <script src="script.js"></script>
-    <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
-  </head>
   <body>
-    <h1>Hello there!</h1>
-   
+    <h1>Hello there! <span id="uname"></span></h1>
+
+    <button onclick="login()">Login</button>
+
+    <button onclick="logout()">Logout</button>
+
     <script>
+      function login() {
+        //TODO Server Request
+        localStorage.setItem('uid', 1001);
+        localStorage.setItem('name', 'satya');
+        sessionStorage.setItem('token','testtoken');
+        displayUserName();
+      }
 
-    localStorage.setItem('uid',1001);
-    localStorage.setItem('name',"satya");
+      function logout() {
+        localStorage.removeItem('uid');
+        localStorage.removeItem('name');
+        displayUserName();
+      }
 
+      function displayUserName() {
+        const name = localStorage.getItem('name');
+        if (name) {
+          document.getElementById('uname').innerHTML = name;
+        }else{
+          document.getElementById('uname').innerHTML = "";
+        }
+      }
     </script>
   </body>
 </html>
